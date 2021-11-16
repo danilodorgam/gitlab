@@ -1,0 +1,2 @@
+#!/bin/bash
+curl -H 'Content-Type: application/json' -d '{"text": "Deploy com erro"}' https://stefaninilatam.webhook.office.com/webhookb2/21ef4a03-fc9a-484b-bb11-cc477f273020@d8bde65a-3ded-4346-9518-670204e6e184/IncomingWebhook/38b840e9b65f4d48ae9b83201bf52c13/192f628c-33bb-45bc-9d19-8976df8f427e

@@ -1,0 +1,35 @@
+resource_rules:
+  issues:
+    rules:
+      - name: Lembrete para issues com 1 dias
+        conditions:
+          date:
+            atribute: updated_at
+            condition: older_than
+            interval_type: days
+            interval: 1
+          state: opened
+          forbidden_labels:
+            - skip auto close
+            - pendente
+          actions:
+            label: pendente
+            comment:
+              Olá, Favor atualizar esta issue para que a mesma não venha a ser fechada.
+      - name: Fechar a Issue com 1 dias de pendente
+        conditions:
+          date:
+            atribute: updated_at
+            condition: older_than
+            interval_type: days
+            interval: 1
+          state: opened
+          forbidden_labels:
+            - skip auto close
+          actions:
+            status: close
+            lavel:  auto close
+            comment:
+              Olá, Esta Issue foi fechada por ter ficado 2 dias inativas.
+merge_requests:
+  rules: []

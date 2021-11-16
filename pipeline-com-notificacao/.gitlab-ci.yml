@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - deploy
+  - notification
+image: curlimages/curl
+
+build_a:
+  stage: build
+  script:
+    - echo "Build A"
+
+test_a:
+  stage: test
+  script:
+    - echo "Test A"
+
+deploy_a:
+  stage: deploy
+  script:
+    - echo "Deploy A"
+
+notificacao_sucesso:
+  stage: notification
+  when: on_success
+  script:
+    - sh notificacaoSucesso.sh
+notificacao_falha:
+  stage: notification
+  when: on_failure
+  script:
+    - sh notificacaoErro.sh

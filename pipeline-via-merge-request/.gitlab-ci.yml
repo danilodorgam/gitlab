@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  tags:
+    - producao
+  script:
+    - echo "fechando um pacote war"
+  only:
+    - main
+test:
+  stage: test
+  tags:
+    - homologacao
+  script:
+    - echo "Estou sendo testado"
+  only:
+    - merge_requests
+
+deployPRD:
+  stage: deploy
+  tags:
+    - producao
+  script:
+    - echo "Estou em Produção"
+  only:
+    - main

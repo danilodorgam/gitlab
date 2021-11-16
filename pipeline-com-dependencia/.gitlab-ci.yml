@@ -1,0 +1,15 @@
+stages:
+  - build
+  - test
+
+build_a:
+  stage: build
+  script:
+    - echo "Build A"
+
+tets_a:
+  stage: test
+  dependencies:
+    - build_a
+  script:
+    - echo "Test A"

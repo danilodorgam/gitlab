@@ -1,0 +1,24 @@
+stages:
+  - dependencia-a-c
+  - dependencia-b-d
+
+build_a:
+  stage: dependencia-a-c
+  script:
+    - echo "Build A"
+build_b:
+  stage: dependencia-b-d
+  needs: ["build_a"]
+  script:
+    - echo "Build B"
+
+test_c:
+  stage: dependencia-a-c
+  script:
+    - echo "Test C"
+
+test_d:
+  stage: dependencia-b-d
+  needs: ["test_c"]
+  script:
+    - echo "Test D"
