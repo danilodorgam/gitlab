@@ -1,0 +1,20 @@
+{
+  "pessoas": [
+    {
+      "id": 2,
+      "nome": "Hudson",
+      "sobrenome": "Sena",
+      "contato": "61982133322",
+      "email": "sena.hudson@hotmail.com",
+      "cargo": 3
+    },
+    {
+      "id": 3,
+      "nome": "THIAGO",
+      "sobrenome": "BEZERRA",
+      "contato": "61999774178",
+      "email": "ticoleite80@gmail.com",
+      "cargo": 1
+    }
+  ]
+}

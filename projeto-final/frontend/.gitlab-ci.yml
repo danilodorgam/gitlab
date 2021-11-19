@@ -1,0 +1,38 @@
+stages:
+  - build
+  - deploy
+
+services:
+  - docker:dind
+
+build_frontend:
+  image: dhdorgam/meu-nodejs:stable
+  stage: build
+  script:
+    - cd frontend
+    - npm install
+    - npm run build
+    - cd dist/curso-ts
+    - zip -r app.zip .
+    - mv app.zip ../../docker/
+  artifacts:
+    paths:
+      - frontend/docker/app.zip
+    expire_in: 1 week
+
+
+build_imagem_frontend:
+  image: docker:dind
+  stage: build
+  script:
+    - cd frontend/docker
+    - wget http://gitlab.localhost.dorgamhost.com/bacen/projeto-final/-/jobs/artifacts/<ref>/download?job=build_frontend
+    - docker build -t meu-nginx .
+    - docker tag meu-nginx dhdorgam/meu-nginx:stable
+    - docker push dhdorgam/meu-nginx
+
+deploy_frontend:
+  image: docker:dind
+  stage: deploy
+  script:
+    - ssh danilodorgam@192.168.0.236 docker run -p 8080:80 dhdorgam/meu-nginx

@@ -1,0 +1,71 @@
+
+
+
+<form class="row g-3 needs-validation " [class.was-validated]="formInvalido" novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+        <div class="col-md-4">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="pessoa.nome" required #nome="ngModel">
+          <div class="valid-feedback">
+            Preenchimento válido
+          </div>
+          <div class="invalid-feedback">
+            Nome é obrigatório.
+        </div>
+        </div>
+        <div class="col-md-4">
+          <label for="sobrenome" class="form-label">Sobrenome</label>
+          <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="pessoa.sobrenome"  required  #sobrenome="ngModel">
+            <div class="valid-feedback">
+                Preenchimento válido
+            </div>
+            <div class="invalid-feedback">
+                Sobrenome é obrigatório.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="email" class="form-label">E-mail</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="email" name="email"  [(ngModel)]="pessoa.email" required #email="ngModel">
+                    <div class="valid-feedback">
+                        Preenchimento válido
+                    </div>
+                    <div class="invalid-feedback">
+                        E-mail é obrigatório.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="contato" class="form-label">Contato</label>
+                <input type="text" class="form-control" placeholder="(__)_____-____" 
+                        id="contato" name="contato" [(ngModel)]="pessoa.contato" required  #contato="ngModel"
+                        >
+                <div class="valid-feedback">
+                    Preenchimento válido
+                </div>
+                <div class="invalid-feedback">
+                    Contato é obrigatório.
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <label for="cargo" class="form-label">Cargo</label>
+            <select class="form-select" id="cargo " [(ngModel)]="pessoa.cargo" [ngModelOptions]="{standalone: true}" required #cargo="ngModel">
+                <!-- <option selected>Selecione</option> -->
+                <option *ngFor="let cargo of cargos" [ngValue]="cargo.id">
+                    {{cargo.nome}}
+                </option>
+            </select>
+
+            <div class="invalid-feedback">
+              Please select a valid state.
+            </div>
+          </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">{{textoBotao}}</button>
+        </div>
+
+  </form>

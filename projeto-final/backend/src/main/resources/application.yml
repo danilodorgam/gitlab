@@ -1,0 +1,45 @@
+greeting:
+  message: "hello"
+'%test':
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        driver: org.h2.Driver
+        url: jdbc:h2:mem:H2DB;INIT=RUNSCRIPT FROM 'classpath:scripts/carga_testes.sql'
+      password: sa
+      username: sa
+'%dev':
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        driver: org.h2.Driver
+        url: jdbc:h2:mem:H2DB;INIT=RUNSCRIPT FROM 'classpath:scripts/carga_testes.sql'
+      password: sa
+      username: sa
+quarkus:
+  smallrye-openapi:
+    path: /swagger
+  swagger-ui:
+    always-include: true
+    path: /explorer
+  hibernate-orm:
+    log-sql: true
+  http:
+    cors: true
+    cors.methods: GET,PUT,POST, OPTIONS
+    cors.origins: 'http://localhost:4200'
+  log:
+    level: INFO
+microprofile:
+  rest:
+    client:
+      disable:
+        default:
+          mapper: false
+java:
+  util:
+    logging:
+      manager: org.jboss.logmanager.LogManager
+
